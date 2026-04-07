@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Malkorra - Voz Natural</title>
+    <style>
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            background-color: #000; 
+            color: #fff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+        }
+        .contenedor { padding: 30px; border: 5px solid #FFD700; border-radius: 25px; width: 85%; }
+        h1 { font-size: 3rem; color: #FFD700; margin-bottom: 20px; }
+        p { font-size: 1.5rem; line-height: 1.4; }
+    </style>
+</head>
+<body onclick="iniciarLectura()">
+
+    <div class="contenedor">
+        <h1>Malkorra</h1>
+        <p>Toca cualquier parte de la pantalla para escuchar la carta de bebidas.</p>
+    </div>
+
+    <script>
+        function iniciarLectura() {
+            // Detenemos cualquier audio previo para evitar solapamientos
+            window.speechSynthesis.cancel();
+
+            const textoMenu = `
+                Bienvenido a Malkorra. Esta es nuestra carta de bebidas.
+
+                En la sección de Cafés:
+                Café solo, americano o cortado, un euro sesenta.
+                Café con leche, un euro setenta.
+                Café con leche grande o café doble, un euro noventa.
+                Descafeinado, un euro setenta.
+                Capuchino, dos euros veinte.
+                Café con leche sin lactosa o con bebida de soja, un euro ochenta.
+
+                Bebidas calientes e infusiones:
+                Infusiones, un euro cincuenta.
+                Infusiones con leche, dos euros.
+                Vaso de leche, un euro cincuenta.
+                Vaso de bebida de soja o Cola Cao, un euro sesenta.
+                Chocolate caliente: el pequeño un euro sesenta, el mediano tres euros y el grande tres euros cincuenta.
+
+                Para terminar, bebidas frías:
+                Agua, un euro veinte.
+                Mosto, un euro diez.
+                Refrescos, dos euros.
+                Cerveza, dos euros veinte.
+
+                Fin de la carta. Muchas gracias por su visita.
+            `;
+
+            const mensaje = new SpeechSynthesisUtterance(textoMenu);
+            
+            // Configuración para una voz clara en español
+            mensaje.lang = 'es-ES';
+            mensaje.rate = 0.9; // Velocidad tranquila para que se entiendan bien los precios
+            
+            window.speechSynthesis.speak(mensaje);
+        }
+    </script>
+
+</body>
+</html>
